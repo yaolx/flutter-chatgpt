@@ -16,7 +16,8 @@ var homeHandler = Handler(
 
 var demoRouteHandler = Handler(
     handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
-  String? title = params["message"]?.first;
+  String? title = params["title"]?.first;
+  print(title);
   return MyHomePage1(
     title: title ?? 'home1',
   );

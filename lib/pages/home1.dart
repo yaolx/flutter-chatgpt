@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../routes/index.dart';
 
 class MyHomePage1 extends StatefulWidget {
   const MyHomePage1({super.key, required this.title});
@@ -10,11 +11,11 @@ class MyHomePage1 extends StatefulWidget {
 }
 
 class _MyHomePage1State extends State<MyHomePage1> {
-  int _counter = 0;
+  final int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
+  void _goto() {
+    Routes.navigateTo(context, Routes.home, params: {
+      "title": '测试',
     });
   }
 
@@ -30,7 +31,7 @@ class _MyHomePage1State extends State<MyHomePage1> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'You have pushed the button this many times:',
+              'You have pushed the button this many times:333',
             ),
             Text(
               '$_counter',
@@ -40,8 +41,8 @@ class _MyHomePage1State extends State<MyHomePage1> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
+        onPressed: _goto,
+        tooltip: '跳转到home',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );

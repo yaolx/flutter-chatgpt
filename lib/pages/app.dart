@@ -1,7 +1,6 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
-import '../routes/application.dart';
 import '../routes/index.dart';
 
 class App extends StatefulWidget {
@@ -17,7 +16,7 @@ class AppState extends State<App> {
   AppState() {
     final router = FluroRouter();
     Routes.configureRoutes(router);
-    Application.router = router;
+    Routes.router = router;
   }
 
   @override
@@ -30,7 +29,7 @@ class AppState extends State<App> {
         useMaterial3: true,
         primarySwatch: Colors.blue,
       ),
-      onGenerateRoute: Application.router.generator,
+      onGenerateRoute: Routes.router.generator,
     );
     return app;
   }
