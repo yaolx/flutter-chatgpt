@@ -6,9 +6,8 @@ class Routes {
   static late final FluroRouter router;
 
   static String root = "/";
-  static String home = "/home";
-  static String home1 = "/home1";
-  static String deepLink = "/message";
+  static String chat = "/chat";
+  static String login = "/login";
 
   static void configureRoutes(FluroRouter router) {
     router.notFoundHandler = Handler(
@@ -16,11 +15,9 @@ class Routes {
       print("ROUTE WAS NOT FOUND !!!");
       return;
     });
-    router.define(root, handler: homeHandler);
-    router.define(home, handler: homeHandler);
-    router.define(home1,
-        handler: demoRouteHandler, transitionType: TransitionType.inFromRight);
-    router.define(deepLink, handler: deepLinkHandler);
+    router.define(root, handler: loginRouteHandler);
+    router.define(chat, handler: chatHandler);
+    router.define(login, handler: loginRouteHandler);
   }
 
   // 对参数进行encode，解决参数中有特殊字符，影响fluro路由匹配

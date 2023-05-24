@@ -12,6 +12,8 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   fluro: ^2.0.5
+  dart_openai: ^1.9.92
+  shared_preferences: ^2.1.1
 
 dev_dependencies:
   flutter_test:

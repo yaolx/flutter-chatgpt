@@ -1,10 +1,9 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_chatgpt/routes/index.dart';
 
-import '../routes/index.dart';
-
-class App extends StatefulWidget {
-  const App({super.key});
+class ChatApp extends StatefulWidget {
+  const ChatApp({super.key});
 
   @override
   State createState() {
@@ -12,7 +11,7 @@ class App extends StatefulWidget {
   }
 }
 
-class AppState extends State<App> {
+class AppState extends State<ChatApp> {
   AppState() {
     final router = FluroRouter();
     Routes.configureRoutes(router);
@@ -22,12 +21,12 @@ class AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     final app = MaterialApp(
-      title: 'Fluro',
-      debugShowCheckedModeBanner: false,
+      title: 'yaolx-chatGPT',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-        primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.teal,
+          secondary: Colors.lime,
+        ),
       ),
       onGenerateRoute: Routes.router.generator,
     );

@@ -1,30 +1,16 @@
-import '../pages/message.dart';
-import '../pages/home.dart';
-import '../pages/home1.dart';
+import 'package:flutter_chatgpt/pages/message/index.dart';
+import 'package:flutter_chatgpt/pages/login.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
 // 首页
-var homeHandler = Handler(
+var chatHandler = Handler(
     handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
-  String? title = params['title']?.first;
-  print(title);
-  return MyHomePage(
-    title: title ?? 'home',
-  );
+  return ChatPage();
 });
 
-var demoRouteHandler = Handler(
+// 登录页
+var loginRouteHandler = Handler(
     handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
-  String? title = params["title"]?.first;
-  print(title);
-  return MyHomePage1(
-    title: title ?? 'home1',
-  );
-});
-
-var deepLinkHandler = Handler(
-    handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
-  Color color = const Color(0xFFFFFFFF);
-  return Message(message: "DEEEEEP LINK!!!", color: color);
+  return const Login();
 });
