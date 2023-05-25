@@ -4,9 +4,8 @@ import 'package:dart_openai/dart_openai.dart';
 class ChatApi {
   static const _model = 'gpt-3.5-turbo';
 
-  ChatApi(openAiApiKey, openAiOrg) {
+  ChatApi(openAiApiKey) {
     OpenAI.apiKey = openAiApiKey;
-    OpenAI.organization = openAiOrg;
   }
 
   Future<String> completeChat(List<ChatMessage> messages) async {

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_chatgpt/constant/cache.dart';
 
@@ -23,7 +24,7 @@ class AppCache {
         sharedPreferences: await SharedPreferences.getInstance(),
       );
     } catch (e) {
-      print(e);
+      debugPrint(e as String?);
     }
   }
 

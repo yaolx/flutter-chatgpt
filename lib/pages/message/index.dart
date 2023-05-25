@@ -18,19 +18,7 @@ class _ChatPageState extends State<ChatPage> {
     ChatMessage('Hello, how can I help?', false),
   ];
   var _awaitingResponse = false;
-  late ChatApi chatApi;
-
-  @override
-  void initState() {
-    super.initState();
-    print(333);
-    try {
-      chatApi = ChatApi(AppCache.openAiApiKey, AppCache.openAiOrg);
-    } catch (e) {
-      print(e);
-      Routes.navigateTo(context, Routes.root);
-    }
-  }
+  late ChatApi chatApi = ChatApi(AppCache.openAiApiKey);
 
   Future<void> _onSubmitted(String message) async {
     setState(() {

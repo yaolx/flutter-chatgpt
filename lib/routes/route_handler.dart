@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 // 首页
 var chatHandler = Handler(
     handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
-  return ChatPage();
+  return const ChatPage();
 });
 
 // 登录页

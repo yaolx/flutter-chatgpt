@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chatgpt/utils/cahce.dart';
+import 'package:flutter_chatgpt/api/chat.dart';
 import 'package:flutter_chatgpt/routes/index.dart';
 
 class Login extends StatefulWidget {
@@ -11,8 +12,9 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final TextEditingController _apiKeyController = TextEditingController();
+  late ChatApi chatApi;
 
-  final TextEditingController _orgController = TextEditingController();
+  String _textError = '';
 
   @override
   void dispose() {
@@ -20,12 +22,18 @@ class _LoginState extends State<Login> {
     super.dispose();
   }
 
-  void _onLogin(key, org) {
-    print(key);
+  void _onLogin(key) {
+    debugPrint(key);
     // 重置
     AppCache.setOpenAiApiKey(key);
-    AppCache.setOpenAiOrg(org);
-    Routes.navigateTo(context, Routes.chat);
+    try {
+      chatApi = ChatApi(AppCache.openAiApiKey);
+      Routes.navigateTo(context, Routes.chat);
+    } catch (e) {
+      setState(() {
+        _textError = '无效的openai_key，请重新输入';
+      });
+    }
   }
 
   @override
@@ -43,6 +51,11 @@ class _LoginState extends State<Login> {
               width: 250,
               child: TextField(
                 obscureText: true,
+                onChanged: (v) {
+                  setState(() {
+                    _textError = '';
+                  });
+                },
                 controller: _apiKeyController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -50,28 +63,21 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
-            const SizedBox(
-              width: 250,
-              height: 50,
-            ),
             SizedBox(
               width: 250,
-              child: TextField(
-                obscureText: true,
-                controller: _orgController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'openAiOrg',
+              height: 50,
+              child: Center(
+                child: Text(
+                  _textError,
+                  style: const TextStyle(
+                    color: Colors.red,
+                  ),
                 ),
               ),
             ),
-            const SizedBox(
-              width: 250,
-              height: 50,
-            ),
             FilledButton(
               onPressed: () {
-                _onLogin(_apiKeyController.text, _orgController.text);
+                _onLogin(_apiKeyController.text);
               },
               child: const Text('登录'),
             ),

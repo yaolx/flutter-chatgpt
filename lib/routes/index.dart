@@ -12,7 +12,7 @@ class Routes {
   static void configureRoutes(FluroRouter router) {
     router.notFoundHandler = Handler(
         handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
-      print("ROUTE WAS NOT FOUND !!!");
+      debugPrint("ROUTE WAS NOT FOUND !!!");
       return;
     });
     router.define(root, handler: loginRouteHandler);
@@ -38,7 +38,7 @@ class Routes {
         index++;
       }
     }
-    print('我是navigateTo传递的参数：$query');
+    debugPrint('我是navigateTo传递的参数：$query');
 
     path = path + query;
     return router.navigateTo(context, path, transition: transition);
