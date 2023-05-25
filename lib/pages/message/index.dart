@@ -4,7 +4,6 @@ import 'package:flutter_chatgpt/pages/message/bubble.dart';
 import 'package:flutter_chatgpt/pages/message/message_chat.dart';
 import 'package:flutter_chatgpt/utils/cahce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_chatgpt/routes/index.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
