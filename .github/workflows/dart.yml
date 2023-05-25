@@ -1,7 +1,10 @@
 # 触发工作流的操作
-on: push
+on:
+  push:
+    branches:
+      - master
 # 工作流名字
-name: Test, Build and Release web
+name: Build and Release web
 # 需要执行的任务
 jobs:
   build:
@@ -11,7 +14,8 @@ jobs:
     # 执行步骤
     steps:
       # 步骤执行之前，先拉取最新代码
-      - uses: actions/checkout@v1
+      - name: Checkout
+        uses: actions/checkout@master
       - uses: actions/setup-java@v1
         with:
           java-version: '12.x'
