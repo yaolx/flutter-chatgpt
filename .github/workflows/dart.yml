@@ -2,7 +2,7 @@
 on:
   push:
     branches:
-      - master
+      - main
 # 工作流名字
 name: Build and Release web
 # 需要执行的任务
