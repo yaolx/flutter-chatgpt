@@ -45,15 +45,15 @@ class AppCache {
   static String? get openAiApiKey => _pre.getString(CacheKey.openAiApiKey);
 
   //  封装设置phone的方法
-  static Future<bool> setOpenAiOrg(String value) async {
-    return _pre.setString(CacheKey.openAiOrg, value);
+  static Future<bool> setGithubToken(String value) async {
+    return _pre.setString(CacheKey.githubToken, value);
   }
 
   //  封装清除phone的方法
-  static Future<bool> cleanOpenAiOrg() async {
-    return await _pre.setString(CacheKey.openAiOrg, '');
+  static Future<bool> cleanGithubToken() async {
+    return await _pre.setString(CacheKey.githubToken, '');
   }
 
   //  封装获取phone的方法
-  static String? get openAiOrg => _pre.getString(CacheKey.openAiOrg);
+  static String? get githubToken => _pre.getString(CacheKey.githubToken);
 }

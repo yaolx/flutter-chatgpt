@@ -12,6 +12,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final TextEditingController _apiKeyController = TextEditingController();
+  final TextEditingController _gitHubTokenController = TextEditingController();
   late ChatApi chatApi;
 
   String _textError = '';
@@ -22,10 +23,10 @@ class _LoginState extends State<Login> {
     super.dispose();
   }
 
-  void _onLogin(key) {
-    debugPrint(key);
+  void _onLogin(key, token) {
     // 重置
     AppCache.setOpenAiApiKey(key);
+    AppCache.setGithubToken(token);
     try {
       chatApi = ChatApi(AppCache.openAiApiKey);
       Routes.navigateTo(context, Routes.chat);
@@ -63,6 +64,20 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
+            const SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              width: 250,
+              child: TextField(
+                obscureText: true,
+                controller: _gitHubTokenController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'gitHubToken',
+                ),
+              ),
+            ),
             SizedBox(
               width: 250,
               height: 50,
@@ -77,7 +92,7 @@ class _LoginState extends State<Login> {
             ),
             FilledButton(
               onPressed: () {
-                _onLogin(_apiKeyController.text);
+                _onLogin(_apiKeyController.text, _gitHubTokenController.text);
               },
               child: const Text('登录'),
             ),

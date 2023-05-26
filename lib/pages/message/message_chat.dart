@@ -27,7 +27,7 @@ class MessageChat extends StatelessWidget {
                       onSubmitted: onSubmitted,
                       decoration: const InputDecoration(
                         hintText: 'Write your message here...',
-                        border: InputBorder.none,
+                        border: OutlineInputBorder(),
                       ),
                     )
                   : const Row(

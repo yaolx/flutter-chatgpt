@@ -27,7 +27,7 @@ jobs:
       # 执行构建之前，更新 flutter 依赖
       - run: flutter pub get
       # 构建
-      - run: flutter build web --base-href /flutter-chatgpt/
+      - run: flutter build web
       # 部署运行
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.3.0

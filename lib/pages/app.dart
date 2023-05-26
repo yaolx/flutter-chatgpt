@@ -22,6 +22,7 @@ class AppState extends State<ChatApp> {
   Widget build(BuildContext context) {
     final app = MaterialApp(
       title: 'yaolx-chatGPT',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.teal,

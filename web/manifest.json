@@ -1,6 +1,6 @@
 {
-  "name": "flutter-chatgpt",
-  "short_name": "flutter-chatgpt",
+  "name": "flutter_chatgpt",
+  "short_name": "flutter_chatgpt",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#0175C2",

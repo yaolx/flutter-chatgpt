@@ -8,6 +8,8 @@ class Routes {
   static String root = "/";
   static String chat = "/chat";
   static String login = "/login";
+  static String poetry = "/poetry";
+  static String poetryWebview = "/poetry_webview";
 
   static void configureRoutes(FluroRouter router) {
     router.notFoundHandler = Handler(
@@ -18,6 +20,8 @@ class Routes {
     router.define(root, handler: loginRouteHandler);
     router.define(chat, handler: chatHandler);
     router.define(login, handler: loginRouteHandler);
+    router.define(poetry, handler: poetryRouteHandler);
+    router.define(poetryWebview, handler: poetryWebviewRouteHandler);
   }
 
   // 对参数进行encode，解决参数中有特殊字符，影响fluro路由匹配
