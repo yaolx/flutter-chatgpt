@@ -26,16 +26,21 @@ class MessageBubble extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Text(
-                  isUserMessage ? 'You' : 'AI',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ],
+            FractionallySizedBox(
+              widthFactor: 1,
+              child: Text(
+                isUserMessage ? 'You' : 'AI',
+                textAlign: isUserMessage ? TextAlign.right : TextAlign.left,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
             const SizedBox(height: 8),
-            Text(content),
+            FractionallySizedBox(
+              widthFactor: 1,
+              child: Text(
+                content,
+              ),
+            ),
           ],
         ),
       ),
