@@ -1,6 +1,7 @@
 import 'package:flutter_chatgpt/model/poetry.dart';
 import 'package:flutter_chatgpt/api/poetry.dart';
 import 'package:flutter/material.dart';
+import 'package:bookfx/bookfx.dart';
 
 class Poetry extends StatefulWidget {
   const Poetry({super.key});
@@ -11,6 +12,9 @@ class Poetry extends StatefulWidget {
 
 class _ChatPageState extends State<Poetry> {
   late List _poetryList = <PoetryModel>[];
+  late int _curPage = 1;
+  EBookController eBookController = EBookController();
+  BookController bookController = BookController();
 
   @override
   void initState() {
@@ -28,30 +32,60 @@ class _ChatPageState extends State<Poetry> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Chat'),
-        actions: <Widget>[
-          IconButton(
-            onPressed: () {
-              print(_poetryList);
-            },
-            icon: const Icon(Icons.list),
-          ),
-        ],
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView(
-              children: [
-                ..._poetryList.map(
-                  (poetry) => Text(poetry['title']),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
+        appBar: AppBar(
+          title: const Text('Chat'),
+        ),
+        body: _poetryList.isEmpty
+            ? null
+            : Stack(
+                children: [
+                  BookFx(
+                    size: Size(MediaQuery.of(context).size.width,
+                        MediaQuery.of(context).size.height),
+                    pageCount: _poetryList.length,
+                    currentPage: (index) {
+                      return Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              _poetryList[index]['title'],
+                            ),
+                            Text(
+                              _poetryList[index]['body'],
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                    lastCallBack: (index) {
+                      setState(() {
+                        if (index != 0 && index != _curPage) {
+                          _curPage = index;
+                        }
+                      });
+                    },
+                    nextCallBack: (index) {
+                      setState(() {
+                        if (index != _curPage) {
+                          _curPage = index;
+                        }
+                      });
+                    },
+                    nextPage: (index) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [Text('下一首：${_poetryList[index]['title']}')],
+                      );
+                    },
+                    controller: bookController,
+                  ),
+                  Positioned(
+                    right: 10,
+                    bottom: 10,
+                    child: Text('$_curPage/${_poetryList.length}'),
+                  ),
+                ],
+              ));
   }
 }

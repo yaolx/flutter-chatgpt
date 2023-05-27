@@ -19,6 +19,7 @@ dependencies:
   webview_flutter_android: ^3.7.1
   webview_flutter_wkwebview: ^3.4.4
   url_launcher: ^6.1.11
+  bookfx: ^0.0.2
 
 dev_dependencies:
   flutter_test:
@@ -28,7 +29,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-
+  assets:
+    - assets/images/
   # fonts:
   #   - family: iconfont
   #     fonts:

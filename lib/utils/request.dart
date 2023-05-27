@@ -1,14 +1,14 @@
 import 'package:dio/dio.dart';
 import 'dart:convert';
 import 'package:flutter_chatgpt/utils/cahce.dart';
-import 'package:flutter/material.dart';
 
 class Request {
   // 配置 Dio 实例
   static final BaseOptions _options = BaseOptions(
-    baseUrl: 'https://api.github.com/repos/yaolx/poetry',
+    baseUrl:
+        'https://api.github.com/repos/${AppCache.githubRepo ?? 'yaolx/poetry'}',
     headers: {
-      'Authorization': AppCache.githubToken,
+      'Authorization': 'Bearer ${AppCache.githubToken}',
     },
     connectTimeout: const Duration(seconds: 10), // 连接超时时间
     receiveTimeout: const Duration(seconds: 3), // 响应超时时间
@@ -48,7 +48,6 @@ class Request {
     try {
       Response response = await _dio.request(path,
           data: data, options: Options(method: method));
-      debugPrint(response.toString());
       if (response.statusCode == 200 || response.statusCode == 201) {
         if (response.data is Map || response.data is List) {
           return response.data;

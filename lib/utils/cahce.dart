@@ -44,16 +44,29 @@ class AppCache {
   //  封装获取token的方法
   static String? get openAiApiKey => _pre.getString(CacheKey.openAiApiKey);
 
-  //  封装设置phone的方法
+  //  封装设置githubToken的方法
   static Future<bool> setGithubToken(String value) async {
     return _pre.setString(CacheKey.githubToken, value);
   }
 
-  //  封装清除phone的方法
+  //  封装清除githubToken的方法
   static Future<bool> cleanGithubToken() async {
     return await _pre.setString(CacheKey.githubToken, '');
   }
 
-  //  封装获取phone的方法
+  //  封装获取githubToken的方法
   static String? get githubToken => _pre.getString(CacheKey.githubToken);
+
+  //  封装设置githubRepo的方法
+  static Future<bool> setGithubRepo(String value) async {
+    return _pre.setString(CacheKey.githubRepo, value);
+  }
+
+  //  封装清除githubRepo的方法
+  static Future<bool> cleanGithubRepo() async {
+    return await _pre.setString(CacheKey.githubRepo, '');
+  }
+
+  //  封装获取githubRepo的方法
+  static String? get githubRepo => _pre.getString(CacheKey.githubRepo);
 }
