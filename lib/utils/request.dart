@@ -1,12 +1,13 @@
 import 'package:dio/dio.dart';
 import 'dart:convert';
 import 'package:flutter_chatgpt/utils/cahce.dart';
+import 'package:flutter_chatgpt/utils/string.dart';
 
 class Request {
   // 配置 Dio 实例
   static final BaseOptions _options = BaseOptions(
     baseUrl:
-        'https://api.github.com/repos/${AppCache.githubRepo ?? 'yaolx/poetry'}',
+        'https://api.github.com/repos/${StringUtils.setValue(AppCache.githubRepo, 'yaolx/poetry')}',
     headers: {
       'Authorization': 'Bearer ${AppCache.githubToken}',
     },
