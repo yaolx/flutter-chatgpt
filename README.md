@@ -1,16 +1,33 @@
 # flutter_chatgpt
 
-A new Flutter project.
+学习flutter的同时，做一款简单的chatgpt应用。
 
-## Getting Started
+古诗背诵，给小孩记录背诵过的古诗，方便后续复习。
 
-This project is a starting point for a Flutter application.
+## 实现过程
 
-A few resources to get you started if this is your first Flutter project:
+### 登录mok
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1. openai_api_key： openai里的apikey
+3. github_token：github setting里创建的token
+4. github_repo：对应github的工程，如：`yaolx/poetry`
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 聊天模块
+
+1. 输入古诗，openai根据prompt，查出对应的古诗句
+2. 解析数据，对接githubApi，提交内容到issues上
+
+### 古诗列表
+
+1. 展示issues数据，即录入的古诗数据
+2. 古诗作者，名称，朝代  ---todo
+3. 点赞、评论功能       ---todo
+
+### 统计古诗学习记录
+
+## 总结
+
+1. 学习flutter过程
+2. 熟悉flutter组件
+
+
