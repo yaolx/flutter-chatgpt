@@ -30,7 +30,7 @@ class _ChatPageState extends State<Poetry> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Chat'),
+          title: const Text('古诗列表'),
         ),
         body: _poetryList.isEmpty
             ? null

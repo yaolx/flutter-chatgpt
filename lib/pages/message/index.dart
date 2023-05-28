@@ -4,6 +4,7 @@ import 'package:flutter_chatgpt/model/chat.dart';
 import 'package:flutter_chatgpt/pages/message/bubble.dart';
 import 'package:flutter_chatgpt/pages/message/message_chat.dart';
 import 'package:flutter_chatgpt/utils/cahce.dart';
+import 'package:flutter_chatgpt/utils/string.dart';
 import 'package:flutter_chatgpt/constant/prompt.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chatgpt/routes/index.dart';
@@ -24,12 +25,17 @@ class _ChatPageState extends State<ChatPage> {
     ChatMessage('Hello, how can I help?', false, 'text'),
   ];
   var _awaitingResponse = false;
+  PromptType _promptType = PromptType.none;
   late ChatApi chatApi = ChatApi(AppCache.openAiApiKey);
+  final ScrollController _controller = ScrollController();
+
   // 解析古诗
   void genPoetry(String message) async {
     RegExp reg = RegExp(r"【([^]*?)】");
     String content = message;
     String? title = '';
+    String? author = '';
+    String? dynasty = '';
     late String? text = '';
     Iterable<RegExpMatch> arr = reg.allMatches(message);
     for (int i = 0; i < arr.length; i++) {
@@ -37,12 +43,30 @@ class _ChatPageState extends State<ChatPage> {
       if (i == 0) {
         title = text.replaceAll('【', '').replaceAll('】', '');
       }
+
+      if (i == 1) {
+        author = text.replaceAll('【', '').replaceAll('】', '');
+      }
+
+      if (i == 2) {
+        dynasty = text.replaceAll('【', '').replaceAll('】', '');
+      }
       content = content.replaceAll(text, '');
     }
-    await PoetryApi.addPoetry({'title': title, 'body': content});
+    // 古诗名称、作者、朝代都存在才录入issues
+    if (StringUtils.isNotNill(title) &&
+        StringUtils.isNotNill(author) &&
+        StringUtils.isNotNill(dynasty)) {
+      await PoetryApi.addPoetry({'title': title, 'body': content});
+      // 加载完成后，自动滑动到底部
+      _controller.jumpTo(_controller.position.maxScrollExtent);
+    }
   }
 
   Future<void> _onSubmitted(String message, [bool isAi = false]) async {
+    if (message.isEmpty) {
+      return;
+    }
     setState(() {
       _messages.add(ChatMessage(message, true, 'text'));
       _awaitingResponse = true;
@@ -50,7 +74,8 @@ class _ChatPageState extends State<ChatPage> {
     final response = await chatApi.completeChat(_messages);
     setState(() {
       _messages.add(ChatMessage(response, false, 'text'));
-      if (!isAi) {
+      // 古诗录入过程
+      if (!isAi && _promptType == PromptType.poetry) {
         genPoetry(response);
       }
       _awaitingResponse = false;
@@ -61,6 +86,7 @@ class _ChatPageState extends State<ChatPage> {
     switch (type) {
       // 古诗背诵
       case PromptType.poetry:
+        _promptType = type;
         await _onSubmitted(Prompt.poetry, true);
         break;
       default:
@@ -77,7 +103,7 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Chat1'),
+        title: const Text('chatgpt'),
         actions: <Widget>[
           IconButton(
             onPressed: () {
@@ -95,6 +121,7 @@ class _ChatPageState extends State<ChatPage> {
         children: [
           Expanded(
             child: ListView(
+              controller: _controller,
               children: [
                 Padding(
                   padding: const EdgeInsets.all(12),

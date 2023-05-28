@@ -90,7 +90,7 @@ class _LoginState extends State<Login> {
                 controller: _gitHubRepoController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'gitHubRepo',
+                  labelText: 'gitHubRepo，如：yaolx/poetry',
                 ),
               ),
             ),
