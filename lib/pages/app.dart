@@ -1,9 +1,11 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_chatgpt/routes/index.dart';
+import 'package:flutter_aminate/routes/index.dart';
+import 'package:flutter_aminate/reducer/page.dart';
+import 'package:provider/provider.dart';
 
-class ChatApp extends StatefulWidget {
-  const ChatApp({super.key});
+class App extends StatefulWidget {
+  const App({super.key});
 
   @override
   State createState() {
@@ -11,7 +13,7 @@ class ChatApp extends StatefulWidget {
   }
 }
 
-class AppState extends State<ChatApp> {
+class AppState extends State<App> {
   AppState() {
     final router = FluroRouter();
     Routes.configureRoutes(router);
@@ -21,7 +23,7 @@ class AppState extends State<ChatApp> {
   @override
   Widget build(BuildContext context) {
     final app = MaterialApp(
-      title: 'yaolx-chatGPT',
+      title: '切屏动画',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
@@ -31,6 +33,9 @@ class AppState extends State<ChatApp> {
       ),
       onGenerateRoute: Routes.router.generator,
     );
-    return app;
+    return ChangeNotifierProvider(
+      create: (context) => PageReducer(),
+      child: app,
+    );
   }
 }

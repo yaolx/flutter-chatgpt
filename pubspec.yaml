@@ -1,4 +1,4 @@
-name: flutter_chatgpt
+name: flutter_aminate
 description: A new Flutter project.
 publish_to: 'none'
 
@@ -10,16 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.2
   fluro: ^2.0.5
-  dart_openai: ^1.9.92
-  shared_preferences: ^2.1.1
-  dio: ^5.1.2
-  webview_flutter: ^4.2.1
-  webview_flutter_android: ^3.7.1
-  webview_flutter_wkwebview: ^3.4.4
-  url_launcher: ^6.1.11
-  bookfx: ^0.0.2
+  provider: ^6.0.1
+  cupertino_icons: ^1.0.2
 
 dev_dependencies:
   flutter_test:
@@ -31,7 +24,3 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
-  # fonts:
-  #   - family: iconfont
-  #     fonts:
-  #       - asset: assets/icons/iconfont.ttf

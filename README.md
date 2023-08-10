@@ -1,4 +1,4 @@
-# flutter_chatgpt
+# flutter_aminate
 
 学习 flutter 的同时，做一款简单的 chatgpt 应用，利用 flutter 的跨端能力，实现一套代码，多端适配。
 
@@ -27,7 +27,7 @@
 
 ## 部署
 
-1. 利用 github action 的能力，实现 web 端自动部署到 github pages 上，访问`https://yaolx.github.io/flutter_chatgpt/`即可
+1. 利用 github action 的能力，实现 web 端自动部署到 github pages 上，访问`https://yaolx.github.io/flutter_aminate/`即可
 2. 后续再研究 android、ios 打包能力 ---todo
 
 ## 总结
